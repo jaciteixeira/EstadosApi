@@ -1,4 +1,4 @@
-package br.com.fiap.seriesapi.model;
+package br.com.fiap.estadosapi.model;
 
 public record Estado(
 		Long id,

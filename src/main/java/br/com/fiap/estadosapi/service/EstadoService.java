@@ -1,9 +1,9 @@
-package br.com.fiap.seriesapi.service;
+package br.com.fiap.estadosapi.service;
 
 import java.util.List;
 
-import br.com.fiap.seriesapi.data.EstadoDao;
-import br.com.fiap.seriesapi.model.Estado;
+import br.com.fiap.estadosapi.data.EstadoDao;
+import br.com.fiap.estadosapi.model.Estado;
 
 public class EstadoService {
 	

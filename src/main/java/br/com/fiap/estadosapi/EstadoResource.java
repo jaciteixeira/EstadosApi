@@ -1,9 +1,9 @@
-package br.com.fiap.seriesapi;
+package br.com.fiap.estadosapi;
 
 import java.util.List;
 
-import br.com.fiap.seriesapi.model.Estado;
-import br.com.fiap.seriesapi.service.EstadoService;
+import br.com.fiap.estadosapi.model.Estado;
+import br.com.fiap.estadosapi.service.EstadoService;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
