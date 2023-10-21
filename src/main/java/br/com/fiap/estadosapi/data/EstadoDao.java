@@ -1,5 +1,7 @@
 package br.com.fiap.estadosapi.data;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,56 +9,63 @@ import br.com.fiap.estadosapi.model.Estado;
 
 public class EstadoDao {
 
+	private final String URL = "jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL";
+	private final String USER = "rm99627";
+	private final String PASS = "051298";
 	List<Estado> estados = new ArrayList<>();
+
+	public List<Estado> findAll() throws SQLException {
+		var con = DriverManager.getConnection(URL, USER, PASS);
+		var rs = con.createStatement().executeQuery("SELECT * FROM SERIES;");
+
+		while(rs.next()) {
+			estados.add(new Estado(
+							rs.getLong("id"),
+							rs.getString("nome"),
+							rs.getString("sigla"),
+							rs.getString("regiao"),
+							rs.getString("capital"),
+							rs.getInt("territorio")
+					)
+			);
+		}
+		con.close();
+		return estados;
+	}
 	
-	public EstadoDao() {
-		var acre = new Estado(
-				1L,
-				"Acre", 
-				"AC", 
-				"Região Norte",
-				"Rio Branco",
-				164123738
-			);
-
-		var alagoas = new Estado(
-				2L,
-				"Alagoas",
-				"AL",
-				"Nordeste",
-				"Maceió",
-				27848
-			);
-
-		var amapa = new Estado(
-				3L,
-				"amapa", 
-				"ap", 
-				"Região Norte",
-				"Macapa",
-				142828
-			);
+	public Estado findById(Long id) throws SQLException{
+		Estado estado = null;
 		
-		var amazonas = new Estado(
-				4L,
-				"amazonas", 
-				"AM", 
-				"Região Norte",
-				"Manaus",
-				1559146
-			);
+		var con = DriverManager.getConnection(URL, USER, PASS);
+        var sql = "SELECT * FROM SERIES WHERE id = ?";
+        var stmt = con.prepareStatement(sql);
+        stmt.setLong(1, id);
+        
+        var rs = stmt.executeQuery();
 
-		
+        while (rs.next()) {
+            estado = new Estado(
+                rs.getLong("id"),
+                rs.getString("nome"),
+                rs.getString("sigla"),
+                rs.getString("regiao"),
+                rs.getString("capital"),
+                rs.getInt("territorio")
+            );
+        }
 
-		
-		estados.add(acre);
-		estados.add(alagoas);
-		estados.add(amapa);
-		estados.add(amazonas);
+		con.close();
+		return estado;
+
 	}
 
-	public List<Estado> findAll() {
-		return estados;
+	public void delete(Estado estado) throws SQLException {
+		var con = DriverManager.getConnection(URL, USER, PASS);
+        var ps = con.prepareStatement("DELETE FROM clientes WHERE id=?"); 
+        ps.setLong(1, estado.id());
+        ps.executeUpdate();
+        con.close();
+        
 	}
 
 }
