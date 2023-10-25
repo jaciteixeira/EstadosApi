@@ -16,7 +16,7 @@ public class EstadoDao {
 
 	public List<Estado> findAll() throws SQLException {
 		var con = DriverManager.getConnection(URL, USER, PASS);
-		var rs = con.createStatement().executeQuery("SELECT * FROM SERIES;");
+		var rs = con.createStatement().executeQuery("SELECT * FROM estados;");
 
 		while(rs.next()) {
 			estados.add(new Estado(
@@ -37,7 +37,7 @@ public class EstadoDao {
 		Estado estado = null;
 		
 		var con = DriverManager.getConnection(URL, USER, PASS);
-        var sql = "SELECT * FROM SERIES WHERE id = ?";
+        var sql = "SELECT * FROM estados WHERE id = ?";
         var stmt = con.prepareStatement(sql);
         stmt.setLong(1, id);
         
@@ -61,7 +61,7 @@ public class EstadoDao {
 
 	public void delete(Estado estado) throws SQLException {
 		var con = DriverManager.getConnection(URL, USER, PASS);
-        var ps = con.prepareStatement("DELETE FROM clientes WHERE id=?"); 
+        var ps = con.prepareStatement("DELETE FROM estados WHERE id=?"); 
         ps.setLong(1, estado.id());
         ps.executeUpdate();
         con.close();

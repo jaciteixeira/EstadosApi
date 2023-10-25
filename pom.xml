@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>br.com.fiap</groupId>
-    <artifactId>seriesapi</artifactId>
+    <artifactId>estadosapi</artifactId>
     <packaging>war</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>seriesapi</name>
+    <name>estadosapi</name>
 
     <build>
-        <finalName>seriesapi</finalName>
+        <finalName>estadosapi</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

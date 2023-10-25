@@ -14,7 +14,9 @@ public class EstadoService {
 		try {
 			List<Estado> lista = dao.findAll();
 			return lista;
-		} catch (SQLException e) {}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	
