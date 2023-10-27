@@ -51,7 +51,7 @@ public class EstadoService {
 	
 	private boolean validar(Estado estado) {
 		if (estado.nome().isEmpty()) return false;
-		if ((estado.sigla().isEmpty())&&(estado.sigla().length() < 2)) return false;
+		if (estado.sigla().isEmpty()||estado.sigla().length() != 2) return false;
 		if (estado.regiao().isEmpty()) return false;
 		if (estado.capital().isEmpty()) return false;
 		if (estado.territorio() < 0) return false;

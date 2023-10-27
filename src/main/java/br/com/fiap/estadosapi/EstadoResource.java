@@ -59,12 +59,8 @@ public class EstadoResource {
 	public Response update(@PathParam("id") Long id, Estado estado) {
 		var estadoEncontrado = service.findById(id);
 		if (estadoEncontrado == null) return Response.status(Response.Status.NOT_FOUND).build();
-		if(service.update(estado)) return Response.status(Response.Status.BAD_REQUEST).build();
+		if(!service.update(estado)) return Response.status(Response.Status.BAD_REQUEST).build();
 		return Response.ok(estado).build();
-		
 	}
 
-	
-	
-	
 }

@@ -18,7 +18,7 @@ public class EstadoDao {
 	public List<Estado> findAll() throws SQLException, ClassNotFoundException {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		var con = DriverManager.getConnection(URL, USER, PASS);
-		var rs = con.createStatement().executeQuery("SELECT * FROM estados");
+		var rs = con.createStatement().executeQuery("SELECT * FROM estados ORDER BY id");
 
 		while(rs.next()) {
 			estados.add(new Estado(
@@ -83,6 +83,8 @@ public class EstadoDao {
 	}
 
 	public void update(Estado estado) throws SQLException {
+		assert estado != null : "O objeto Estado não pode ser nulo.";
+	    assert estado.id() != null : "O ID do estado não pode ser nulo para atualização.";
 		var con = DriverManager.getConnection(URL, USER, PASS);
         var ps = con.prepareStatement("UPDATE estados SET nome=?, sigla=?, regiao=?, capital=?, territorio=? WHERE id=?"); 
         ps.setString(1, estado.nome());
