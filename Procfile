@@ -1,1 +1,1 @@
-web: java -jar target/estadoapi.war
+web: java -jar target/estadoapi.jar
