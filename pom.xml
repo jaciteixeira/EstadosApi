@@ -5,7 +5,7 @@
 
     <groupId>br.com.fiap</groupId>
     <artifactId>estadosapi</artifactId>
-    <packaging>jar</packaging>
+    <!-- <packaging>jar</packaging> -->
     <version>0.0.1-SNAPSHOT</version>
     <name>estadosapi</name>
 
